@@ -1,0 +1,141 @@
+import UIKit
+import AVFoundation
+
+class ViewController: UIViewController {
+    @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var label2: UILabel!
+    @IBOutlet weak var button: UIButton!
+
+    var countdownTimer: Timer?
+    var endDate: Date?
+    var player: AVAudioPlayer?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateClock()
+        startClockTimer()
+    }
+
+    func updateClock() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E, d MMM yyyy HH:mm:ss"
+        label1.text = formatter.string(from: Date())
+    }
+
+    func startClockTimer() {
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            self?.updateClock()
+        }
+    }
+
+    @IBAction func startTimerButtonTapped(_ sender: UIButton) {
+        if countdownTimer == nil {
+            showDatePicker()
+        } else {
+            stopCountdownTimer()
+            stopMusic()
+        }
+    }
+
+    func showDatePicker() {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .countDownTimer
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+
+        let alert = UIAlertController(title: "Select Timer Duration", message: nil, preferredStyle: .alert)
+        alert.view.addSubview(datePicker)
+
+        let okAction = UIAlertAction(title: "Start Timer", style: .default) { [weak self] _ in
+            self?.startCountdownTimer(duration: datePicker.countDownDuration)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+
+        present(alert, animated: true)
+    }
+
+    @objc func datePickerValueChanged(_ datePicker: UIDatePicker) {
+        endDate = datePicker.date
+    }
+
+    func startCountdownTimer(duration: TimeInterval) {
+        endDate = Date().addingTimeInterval(duration)
+
+        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            guard let self = self else { return }
+
+            let currentTime = Date()
+            if currentTime >= self.endDate! {
+                timer.invalidate()
+                self.playMusic()
+                self.button.setTitle("Stop Music", for: .normal)
+            } else {
+                let timeRemaining = self.endDate!.timeIntervalSince(currentTime)
+                self.updateLabel2(timeRemaining: timeRemaining)
+            }
+        }
+    }
+
+    func stopCountdownTimer() {
+        countdownTimer?.invalidate()
+        countdownTimer = nil
+    }
+
+    func updateLabel2(timeRemaining: TimeInterval) {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.zeroFormattingBehavior = .pad
+
+        if let formattedString = formatter.string(from: timeRemaining) {
+            label2.text = formattedString
+        }
+    }
+
+    func playMusic() {
+        guard let url = Bundle.main.url(forResource: "music", withExtension: "mp3") else { return }
+
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.play()
+        } catch {
+            print("Failed to play music: \(error)")
+        }
+    }
+
+    func stopMusic() {
+        player?.stop()
+    }
+}
+
+
+new 
+
+func startCountdownTimer(duration: TimeInterval) {
+    let calendar = Calendar.current
+    let currentDate = Date()
+    let selectedDate = currentDate.addingTimeInterval(duration)
+    let components = calendar.dateComponents([.hour, .minute], from: currentDate, to: selectedDate)
+
+    guard let hours = components.hour, let minutes = components.minute else {
+        return
+    }
+
+    let totalSeconds = (hours * 3600) + (minutes * 60)
+    endDate = currentDate.addingTimeInterval(TimeInterval(totalSeconds))
+
+    countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+        guard let self = self else { return }
+
+        let currentTime = Date()
+        if currentTime >= self.endDate! {
+            timer.invalidate()
+            self.playMusic()
+            self.button.setTitle("Stop Music", for: .normal)
+        } else {
+            let timeRemaining = self.endDate!.timeIntervalSince(currentTime)
+            self.updateLabel2(timeRemaining: timeRemaining)
+        }
+    }
+}
