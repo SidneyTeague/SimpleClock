@@ -39,15 +39,11 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="startTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dbJ-5U-YL0"/>
                                     <action selector="startTimerButtonTapped:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="0ne-Dw-BO7"/>
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YR5-bz-MBy">
                                 <rect key="frame" x="35" y="265" width="320" height="216"/>
-                                <connections>
-                                    <action selector="DatePicker:" destination="BYZ-38-t0r" eventType="valueChanged" id="AXh-dc-YeT"/>
-                                </connections>
                             </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -67,7 +63,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="button" destination="rhk-BD-H1X" id="qO7-za-T3Y"/>
                         <outlet property="datePicker" destination="YR5-bz-MBy" id="3b3-up-yAK"/>
                         <outlet property="label1" destination="xxH-lK-Y3G" id="64S-Qm-ikq"/>
                         <outlet property="label2" destination="Khf-Ov-ZUv" id="6Ox-iz-kUP"/>
