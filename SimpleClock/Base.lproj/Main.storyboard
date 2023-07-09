@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SimpleClock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxH-lK-Y3G" userLabel="label1">
+                                <rect key="frame" x="16" y="175" width="358" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Z98-qG-7nj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khf-Ov-ZUv" userLabel="label2">
+                                <rect key="frame" x="16" y="632" width="358" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhk-BD-H1X">
+                                <rect key="frame" x="41" y="544" width="308" height="42"/>
+                                <color key="backgroundColor" systemColor="placeholderTextColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24.5"/>
+                                <state key="normal" title="Start Timer/ Stop Music">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="startTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dbJ-5U-YL0"/>
+                                    <action selector="startTimerButtonTapped:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="0ne-Dw-BO7"/>
+                                </connections>
+                            </button>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YR5-bz-MBy">
+                                <rect key="frame" x="35" y="265" width="320" height="216"/>
+                                <connections>
+                                    <action selector="DatePicker:" destination="BYZ-38-t0r" eventType="valueChanged" id="AXh-dc-YeT"/>
+                                </connections>
+                            </datePicker>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Khf-Ov-ZUv" firstAttribute="top" secondItem="rhk-BD-H1X" secondAttribute="bottom" constant="46" id="4lm-q6-ko5"/>
+                            <constraint firstItem="rhk-BD-H1X" firstAttribute="centerX" secondItem="xxH-lK-Y3G" secondAttribute="centerX" id="70i-zy-hEy"/>
+                            <constraint firstItem="YR5-bz-MBy" firstAttribute="top" secondItem="xxH-lK-Y3G" secondAttribute="bottom" constant="70" id="AEp-le-T4Y"/>
+                            <constraint firstItem="rhk-BD-H1X" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ApR-8p-BUo"/>
+                            <constraint firstItem="xxH-lK-Y3G" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="131" id="F8y-Br-8Bd"/>
+                            <constraint firstItem="rhk-BD-H1X" firstAttribute="centerX" secondItem="YR5-bz-MBy" secondAttribute="centerX" id="FNh-F3-FKC"/>
+                            <constraint firstAttribute="bottom" secondItem="rhk-BD-H1X" secondAttribute="bottom" constant="258" id="H4S-MW-gx9"/>
+                            <constraint firstItem="xxH-lK-Y3G" firstAttribute="leading" secondItem="Khf-Ov-ZUv" secondAttribute="leading" id="ZXM-SN-Yr1"/>
+                            <constraint firstItem="xxH-lK-Y3G" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="gYr-mH-dc9"/>
+                            <constraint firstItem="rhk-BD-H1X" firstAttribute="centerX" secondItem="Khf-Ov-ZUv" secondAttribute="centerX" id="pNe-D6-Z47"/>
+                            <constraint firstItem="rhk-BD-H1X" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="41" id="vbm-A3-as9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="button" destination="rhk-BD-H1X" id="qO7-za-T3Y"/>
+                        <outlet property="datePicker" destination="YR5-bz-MBy" id="3b3-up-yAK"/>
+                        <outlet property="label1" destination="xxH-lK-Y3G" id="64S-Qm-ikq"/>
+                        <outlet property="label2" destination="Khf-Ov-ZUv" id="6Ox-iz-kUP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138.46153846153845" y="81.753554502369667"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
